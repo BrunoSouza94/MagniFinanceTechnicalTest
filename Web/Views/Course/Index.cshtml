@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Courses List";
+}
+
+<div ng-controller="CourseController">
+
+    <div class="container" ng-init="getCourses()">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h2 class="page-title">Manage <b>Courses</b></h2>
+                    </div>
+                    <div class="col-sm6 pull-right button-add">
+                        <a href="#editModal" class="btn btn-orange" data-toggle="modal">New Course</a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead class="table-head">
+                    <tr class="list-tr">
+                        <th class="list-th">Course Name</th>
+                        <th class="list-th">Number of Subjects</th>
+                        <th class="list-th">Number of Teachers</th>
+                        <th class="list-th">Number of Students</th>
+                        <th class="list-th">Average Grade</th>
+                        <th class="list-th">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="list-tr" ng-class="{'last-tr': $last}" ng-repeat="course in Courses" }}>
+                        <td>{{course.CourseName}}</td>
+                        <td>{{course.CourseSubjects.length}}</td>
+                        <td>{{course.CourseSubjects.length}}</td>
+                        <td>{{course.CourseStudents.length}}</td>
+                        <td>{{course.AverageGrade | number: 2}}</td>
+                        <td>
+                            <a href="#editModal" class="btn btn-options" data-toggle="modal" ng-click="setCourseToEdit(course)">Edit</a>
+                            <a href="#deleteModal" class="btn btn-options" data-toggle="modal" ng-click="setCurrentId(course.Id)">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form ng-submit="insertOrEditCourse()">
+                    <div class="modal-header">
+                        <h4 ng-show="!isEdit" class="modal-title">Register Course</h4>
+                        <h4 ng-show="isEdit" class="modal-title">Edit Course</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clearEditValues()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="FirstName">Course Name</label>
+                            <input type="text" ng-model="insertedCourse.CourseName" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-orange" value="Cancel" ng-click="clearEditValues()" data-dismiss="modal" />
+                        <input type="submit" class="btn btn-orange" value="Save" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form ng-submit="deleteCourse()">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Course</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this course?</p>
+                        <p class="text-warning"><small>This action can't be undone.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-orange" value="Cancel" data-dismiss="modal" />
+                        <input type="submit" class="btn btn-orange" value="Delete" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/NgControllers/courseController.js");
+}

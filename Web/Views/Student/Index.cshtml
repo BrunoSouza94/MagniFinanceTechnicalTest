@@ -1,0 +1,139 @@
+﻿@{
+    ViewBag.Title = "Students List";
+}
+
+<div ng-controller="StudentController">
+
+    <div class="container" ng-init="getValues('/Student/GetStudents', 'Student')">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h2 class="page-title">Manage <b>Students</b></h2>
+                    </div>
+                    <div class="col-sm6 pull-right button-add">
+                        <a href="#editModal" class="btn btn-orange" data-toggle="modal">New Student</a>
+                        <a href="#enrollModal" class="btn btn-orange" data-toggle="modal">Subject Enrollment</a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead class="table-head">
+                    <tr class="list-tr">
+                        <th class="list-th">First Name</th>
+                        <th class="list-th">Last Name</th>
+                        <th class="list-th">Birthday</th>
+                        <th class="list-th">Registration Number</th>
+                        <th class="list-th">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="list-tr" ng-class="{'last-tr': $last}" ng-repeat="student in Students" }}>
+                        <td>{{student.FirstName}}</td>
+                        <td>{{student.LastName}}</td>
+                        <td>{{normalizeDate(student.Birthday).toLocaleDateString('pt-PT')}}</td>
+                        <td>{{student.RegistrationNumber}}</td>
+                        <td>
+                            <a href="#editModal" class="btn btn-options" data-toggle="modal" ng-click="setStudentToEdit(student)">Edit</a>
+                            <a href="#deleteModal" class="btn btn-options" data-toggle="modal" ng-click="setCurrentId(student.Id)">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form ng-submit="insertOrEditStudent()">
+                    <div class="modal-header">
+                        <h4 ng-show="!isEdit" class="modal-title">Register Student</h4>
+                        <h4 ng-show="isEdit" class="modal-title">Edit Student</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clearEditValues()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="FirstName">First Name</label>
+                            <input type="text" ng-model="insertedStudent.FirstName" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="LastName">Last Name</label>
+                            <input type="text" ng-model="insertedStudent.LastName" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="Birthday">Birthday</label>
+                            <input type="date" ng-model="insertedStudent.Birthday" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="RegistrationNumber">Registration Number</label>
+                            <input type="text" ng-model="insertedStudent.RegistrationNumber" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-orange" value="Cancel" ng-click="clearEditValues()" data-dismiss="modal" />
+                        <input type="submit" class="btn btn-orange" value="Save" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="enrollModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form ng-submit="enrollStudent()">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Enroll Student</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clearEnrollmentValues()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="Students">Student</label>
+                            <br/>
+                            <select class="dropdown" ng-model="insertedSubjectStudent.StudentId">
+                                <option ng-repeat="student in Students" value="{{student.Id}}">{{student.FirstName}} {{student.LastName}}</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="Course">Course</label>
+                            <br />
+                            <select class="dropdown" ng-init="getValues('/Subject/GetSubjects', 'Subject')" ng-model="insertedSubjectStudent.SubjectId">
+                                <option ng-repeat="subject in Subjects" value="{{subject.Id}}">{{subject.SubjectName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-orange" value="Cancel" ng-click="clearEnrollmentValues()" data-dismiss="modal" />
+                        <input type="submit" class="btn btn-orange" value="Save" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form ng-submit="deleteStudent()">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Student</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this student?</p>
+                        <p class="text-warning"><small>This action can't be undone.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-orange" value="Cancel" data-dismiss="modal" />
+                        <input type="submit" class="btn btn-orange" value="Delete" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/NgControllers/studentController.js");
+}

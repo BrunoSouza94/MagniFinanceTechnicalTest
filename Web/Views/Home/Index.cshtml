@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="home-content">
+    <div class="home-box">
+        <h1>Welcome to the college management system</h1>
+        <h2>Use this system to:</h2>
+
+        <ul class="home-ul">
+            <li class="home-li">Manage students and enroll them in subjects <a href=@Url.Action("Index", "Student")>here</a></li>
+            <li class="home-li">Manage teachers <a href=@Url.Action("Index", "Teacher")>here</a></li>
+            <li class="home-li">Manage courses and see their statistics <a href=@Url.Action("Index", "Course")>here</a></li>
+            <li class="home-li">Manage subjects and see their statistics <a href=@Url.Action("Index", "Subject")>here</a></li>
+            <li class="home-li">See students enrollments and manage their grades  <a href=@Url.Action("Index", "SubjectStudents")>here</a></li>
+        </ul>
+    </div>
+</div>

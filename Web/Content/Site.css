@@ -1,0 +1,208 @@
+﻿body {
+    padding-top: 0;
+    padding-bottom: 20px;
+    background-color: #F1F1F1D4;
+    color: black;
+    height: 87vh;
+    overflow-y: hidden;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.container{
+    width: 80vw;
+}
+
+.full-content{
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.logo{
+    height: 7vh;
+    position: absolute;
+    left: 0;
+    top:0;
+    padding-left: 1em;
+    padding-top: 0.5em;
+    text-decoration: none;
+}
+
+.my-header > a.home-link {
+    color: #f34040;
+    text-decoration: none;
+}
+
+.button-add {
+    position: relative;
+    top: 20px;
+    padding-right: 2em;
+}
+
+.btn-orange {
+    background-color: #F34040;
+    color: white;
+    border: 1px solid white;
+}
+
+.btn-orange:hover {
+    background-color: white;
+    color: #F34040;
+    border: 1px solid #F34040;
+}
+
+.btn-options {
+    background-color: white;
+    color: #F34040;
+    border: 1px solid #F34040;
+    width: 33%;
+    padding: 0.3em;
+}
+
+.btn-options:hover {
+    background-color: #F34040;
+    color: white;
+    border: 1px solid white;
+}
+
+.btn-options:focus {
+    color: #f34040;
+}
+
+.page-title{
+color: #F34040;
+}
+
+.my-header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 1em;
+    font-size: 25px;
+    background-color: white;
+    color: #f34040;
+    position: relative;
+    height: 10vh;
+    border-bottom: solid 5px #f3404055;
+}
+
+.table-title{
+    padding-bottom: 20px;
+}
+
+.table-head{
+    background-color: #f34040;
+    color: white;
+}
+
+.list-tr {
+    border-left: #f34040 solid 2px;
+    border-right: #f34040 solid 2px;
+}
+
+.last-tr {
+    border-bottom: #f34040 solid 2px;
+}
+
+.table > thead > tr > th {
+    border: #f34040 solid 2px;
+}
+
+.nav-tabs {
+    font-size: 20px;
+    border-bottom: none;
+    position:absolute;
+    bottom: 1px;
+    right: 0;
+}
+
+.nav-tabs a{
+    color: #f34040;
+}
+
+.my-footer{
+    background-color: #f34040;
+    height: 3vh;
+    width: 100%;
+    color: white;
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+
+.footer-text {
+    padding: 15px;
+}
+
+.home-content{
+    position:center;
+    text-align:center;
+    color: black;
+    width: 100vw;
+}
+
+.home-box{
+    color: #f34040;
+    background-color:white;
+    width: 33vw;
+    height: 43.5vh;
+    position: relative;
+    border-radius: 15px;
+    top:21.75vh;
+    left: 33.5vw;
+    border: 5px solid #f3404055;
+}
+
+.home-ul{
+    padding-top: 5vh;
+    list-style: none;
+}
+
+.home-li {
+    font-size: 2vh;
+    text-align: left;
+}
+
+.home-li a{
+    text-decoration: none;
+}
+
+.modal-header{
+    background-color: white;
+    border-bottom: 2px solid #f3404055;
+    color: #f34040;
+}
+
+.modal-body {
+    background-color: #F1F1F1D4;
+    color: black;
+}
+
+.modal-footer {
+    border-top: 2px solid #f3404055;
+    background-color: white;
+}
+
+.dropdown {
+    width: 33%;
+    min-height: 30px;
+    border: 0.5px solid #f3404055;
+    border-radius: 2px;
+}
