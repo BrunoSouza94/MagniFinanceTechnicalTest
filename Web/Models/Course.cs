@@ -22,5 +22,8 @@ namespace Web.Models
 
         [NotMapped]
         public List<Student> CourseStudents { get; set; }
+        
+        [NotMapped]
+        public List<Teacher> CourseTeachers { get; set; }
     }
 }

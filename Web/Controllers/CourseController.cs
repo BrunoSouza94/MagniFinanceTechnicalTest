@@ -32,9 +32,12 @@ namespace Web.Controllers
                                             .ToList();
 
                 course.CourseStudents = new List<Student>();
+                course.CourseTeachers = new List<Teacher>();
 
                 course.CourseSubjects.ForEach((subject) =>
                 {
+                    if (course.CourseTeachers.Find(t => t.Id.Equals(subject.TeacherId)) == null) course.CourseTeachers.Add(context.Teachers.FirstOrDefault(s => s.Id == subject.TeacherId));
+
                     var subjectStudents = context.SubjectStudents
                                             .Where(ss => ss.SubjectId == subject.Id)
                                             .ToList();
