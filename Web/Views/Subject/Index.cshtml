@@ -59,15 +59,17 @@
                         <div class="form-group">
                             <label for="Teacher">Teacher</label>
                             <br/>
-                            <select class="dropdown" ng-init="getValues('/Teacher/GetTeachers', 'Teacher')" ng-model="insertedSubject.TeacherId">
-                                <option ng-repeat="teacher in Teachers" value="{{teacher.Id}}">{{teacher.FirstName}} {{teacher.LastName}}</option>
+                            <select class="dropdown" ng-init="getValues('/Teacher/GetTeachers', 'Teacher')" ng-model="insertedSubject.TeacherId" required>
+                                <option value="">Select a teacher</option>
+                                <option ng-repeat="teacher in Teachers" ng-selected="teacher.Id === insertedSubject.TeacherId" value="{{teacher.Id}}">{{teacher.FirstName}} {{teacher.LastName}}</option>
                             </select>
                         </div>
                         <div>
                             <label for="Course">Course</label>
                             <br />
-                            <select class="dropdown" ng-init="getValues('/Course/GetCourses', 'Course')" ng-model="insertedSubject.CourseId">
-                                <option ng-repeat="course in Courses" value="{{course.Id}}">{{course.CourseName}}</option>
+                            <select class="dropdown" ng-init="getValues('/Course/GetCourses', 'Course')" ng-model="insertedSubject.CourseId" required>
+                                <option value="">Select a course</option>
+                                <option ng-repeat="course in Courses" ng-selected="course.Id === insertedSubject.CourseId" value="{{course.Id}}">{{course.CourseName}}</option>
                             </select>
                         </div>
                     </div>
